@@ -5,14 +5,8 @@ var ProfileSchema = new Schema ({
 	name: "Cameron",
 	github_link: " ",
 	github_profile_image: " ",
-	current_city: "Denver",
-	pets: [
-		{
-		name: "Nixon",
-		type: "dog",
-		breed: "Ridgeback-Lab"
-		}
-	];
+	current_city: "Denver"
 });
 
+var Profile = mongoose.model('Profile', ProfileSchema);
 module.exports = Profile;
