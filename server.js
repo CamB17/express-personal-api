@@ -50,6 +50,14 @@ app.get('/api', function api_index(req, res) {
   })
 });
 
+app.get('api/campsite', function(req, res) {
+  db.Campsite.find().populate('campsite')
+  .exec(function(err, campsite) {
+    if (err) { return console.log("index error: " + err); }
+    res.json(campsite);
+  });
+});
+
 /**********
  * SERVER *
  **********/
