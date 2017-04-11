@@ -50,13 +50,10 @@ app.get('/api', function api_index(req, res) {
   })
 });
 
-// app.get('api/campsite', function(req, res) {
-//   db.Campsite.find().populate('campsite')
-//   .exec(function(err, campsite) {
-//     if (err) { return console.log("index error: " + err); }
-//     res.json(campsite);
-//   });
-// });
+app.get('api/profile', function(req, res) {
+  res.json('profile');
+});
+
 
 /**********
  * SERVER *
