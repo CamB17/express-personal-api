@@ -49,7 +49,7 @@ app.get('/api', function api_index(req, res) {
       {method: "GET", path: "/api/profile", description: "Info about me"},
       {method: "POST", path: "/api/cars", description: "E.g. Add a favorite car"},
       {method: "GET", path: "/api/cars", description: "Get info about my cars"}
-      {method: "DELETE", path: "/api/cars", desciption: "Delete a car"},
+      //{method: "DELETE", path: "/api/cars", desciption: "Delete a car"}
     ]
   });
 });
