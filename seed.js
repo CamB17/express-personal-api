@@ -13,3 +13,14 @@
 //   console.log("Created new campsite", campsite._id)
 //   process.exit(); // we're all done! Exit the program.
 // })
+
+var db = require('./models');
+
+var profile_list = [
+	{
+		name: "Cameron",
+		github_link: " https://github.com/CamB17",
+		github_profile_image: "https://github.com/settings/profile",
+		current_city: "Denver"
+	}
+];

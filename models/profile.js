@@ -2,10 +2,10 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var ProfileSchema = new Schema ({
-	name: "Cameron",
-	github_link: " ",
-	github_profile_image: " ",
-	current_city: "Denver"
+	name: String
+	github_link: "https://github.com/CamB17"
+	github_profile_image: "https://github.com/settings/profile"
+	current_city: String
 });
 
 var Profile = mongoose.model('Profile', ProfileSchema);
