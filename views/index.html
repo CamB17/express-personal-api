@@ -39,6 +39,9 @@
         <script id='movies-template' type='text/x-handlebars-template'>
           {{#each movies}}
         <hr>
+        <p>
+        <button type='button' name='button' class='deleteBtn btn btn-danger pull-right' data-id={{_id}}>Delete</button>
+        </p>
     </div>
   </body>
 </html>

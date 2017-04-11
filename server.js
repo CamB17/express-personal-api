@@ -7,6 +7,11 @@ var express = require('express'),
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
 
 /************
  * DATABASE *
@@ -78,10 +83,11 @@ app.post('/api/movies', function (req, res) {
 //delete movie
 app.delete('/api/movies/:id', function (req, res) {
   //get movie id from url params ('req.params')
-  console.log('movies delte', req.params);
+  console.log('movies delete', req.params);
+  var movieId = req.params.id;
   //find movie index to remove
-  db.Movie.findOneAndRemove({ _id: movieID }, function (err, deleteMovie) {
-    res.json(deleteMovie);
+  db.Movie.findOneAndRemove({ _id: movieId }, function (err, deleteMovie) {
+    res.json(deletedMovie);
   });
 });
 
@@ -114,9 +120,6 @@ app.get('/api', function api_index(req, res) {
     ]
   });
 });
-
-
-
 
 /**********
  * SERVER *

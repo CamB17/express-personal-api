@@ -1,6 +1,6 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
-var mongoose = require('mongoose'),
+
   var db = require('./models');
 
 var personal_info = [
@@ -9,7 +9,7 @@ var personal_info = [
   		github_link: 'https://github.com/CamB17',
   		github_profile_image: 'https://avatars2.githubusercontent.com/u/25963289?v=3&s=460',
   		current_city: 'Denver'
-  		favorite_movies: ['The Departed', 'The Godfather', 'Casino']
+  		movies: ['The Departed', 'The Godfather', 'Casino']
   		//pets:
   }];
 
@@ -50,7 +50,6 @@ db.Movie.remove({}, function(err, movies){
     movies_list.forEach(function (movieData) {
       var movie = new db.Movie({
         title: movieData.title,
-        image: movieData.image,
         releaseYear: movieData.releaseYear
       });
    });
