@@ -9,15 +9,27 @@
   		github_link: 'https://github.com/CamB17',
   		github_profile_image: 'https://avatars2.githubusercontent.com/u/25963289?v=3&s=460',
   		current_city: 'Denver'
-  		//favorite_cars:
+  		//favorite_movies: ['The Departed', 'The Godfather', 'Casino']
   		//pets:
   	}];
 
 var mongoose = require('mongoose'),
-	// var cars_list = [
+	// var movies_list = [
 	// 	{
-			
+
 	// 	}]
-	Schema = mongoose.Schema;
+
+db.Profile.remove({}, function(err, profile) {
+	console.log('remove all profile information');
+	db.Profile.create(personal_info, function(err, profile) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		console.log(profile);
+		console.log('recreated profile');
+		console.log("created", profile.length, "profile");
+	});
+});
 
 

@@ -6,7 +6,8 @@ var ProfileSchema = new Schema ({
 	github_link: String,
 	github_profile_image: String,
 	current_city: String,
-	pets: String
+	//cars: Array
+	pets: Array
 });
 
 var Profile = mongoose.model('Profile', ProfileSchema);

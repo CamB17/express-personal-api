@@ -25,6 +25,7 @@ var app = express();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 /*
  * HTML Endpoints
  */
@@ -40,7 +41,7 @@ app.get('/', function homepage(req, res) {
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
+    
     message: "Welcome to my personal api! Here's what you need to know!",
     documentation_url: "https://github.com/CamB17/express_self_api/README.md", // CHANGE ME
     base_url: "http://ancient-sands-52635.herokuapp.com", // CHANGE ME
