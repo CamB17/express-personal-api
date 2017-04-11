@@ -12,15 +12,18 @@ app.use(bodyParser.json());
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var express = require('express'),
+  bodyParser = require('body-parser');
+var db = require('./models');
 
 /**********
  * ROUTES *
  **********/
-
+var app = express();
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /*
  * HTML Endpoints
@@ -43,8 +46,10 @@ app.get('/api', function api_index(req, res) {
     base_url: "http://ancient-sands-52635.herokuapp.com", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Info about me"}, // CHANGE ME
-      {method: "POST", path: "/api/profile/albums", description: "E.g. Add a favorite album"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Info about me"},
+      {method: "POST", path: "/api/cars", description: "E.g. Add a favorite car"},
+      {method: "GET", path: "/api/cars", description: "Get info about my cars"}
+      {method: "DELETE", path: "/api/cars", desciption: "Delete a car"},
     ]
   });
 });

@@ -1,26 +1,23 @@
 // This file allows us to seed our application with data
 // simply run: `node seed.js` from the root of this project folder.
 
-//  var db = require('./models');
+  var db = require('./models');
 
-// var new_campsite = {description: "Sharp rocks. Middle of nowhere."}
+  var personal_info = [
+  	{
+  		name: 'Cameron Barclay',
+  		github_link: 'https://github.com/CamB17',
+  		github_profile_image: 'https://avatars2.githubusercontent.com/u/25963289?v=3&s=460',
+  		current_city: 'Denver'
+  		//favorite_cars:
+  		//pets:
+  	}];
 
-// db.Campsite.create(new_campsite, function(err, campsite){
-//   if (err){
-//     return console.log("Error:", err);
-//   }
+var mongoose = require('mongoose'),
+	// var cars_list = [
+	// 	{
+			
+	// 	}]
+	Schema = mongoose.Schema;
 
-//   console.log("Created new campsite", campsite._id)
-//   process.exit(); // we're all done! Exit the program.
-// })
 
-var db = require('./models');
-
-var profile_list = [
-	{
-		name: "Cameron",
-		github_link: " https://github.com/CamB17",
-		github_profile_image: "https://github.com/settings/profile",
-		current_city: "Denver"
-	}
-];
