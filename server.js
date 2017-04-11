@@ -45,18 +45,18 @@ app.get('/api', function api_index(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "POST", path: "/api/campsite", description: "E.g. Create a new campsite"} // CHANGE ME
     ]
   })
 });
 
-app.get('api/campsite', function(req, res) {
-  db.Campsite.find().populate('campsite')
-  .exec(function(err, campsite) {
-    if (err) { return console.log("index error: " + err); }
-    res.json(campsite);
-  });
-});
+// app.get('api/campsite', function(req, res) {
+//   db.Campsite.find().populate('campsite')
+//   .exec(function(err, campsite) {
+//     if (err) { return console.log("index error: " + err); }
+//     res.json(campsite);
+//   });
+// });
 
 /**********
  * SERVER *
