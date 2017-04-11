@@ -6,24 +6,84 @@ var express = require('express'),
 // and populate the req.body object
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 
 /************
  * DATABASE *
  ************/
 
 var express = require('express'),
-  bodyParser = require('body-parser');
+ bodyParser = require('body-parser');
+
+//connect to models db
 var db = require('./models');
 
+var app = express();
+
+app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 /**********
  * ROUTES *
  **********/
-var app = express();
+
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.get('/', function (req, res) {
+   res.sendFile('views/index.html' , { root : __dirname});
+ });
+
+// get profile
+app.get('api/profile', function(req, res) {
+  //profile as JSON res
+  db.Profile.find().populate('profile')
+  .exec(function(err, profile) {
+    if (err) {
+      return console.log('index error: ' + err);
+    }
+  res.json(profile);
+  });
+});
+
+// get all movies
+app.get('/api/movies', function (req, res) {
+  // send movies as JSON res
+  db.Movie.find()
+    .populate('movie')
+    .exec(function (err, movies) {
+      if (err) { return console.log("index error: " + err); }
+      res.json(movies);
+    });
+});
+
+//create new Movie
+app.post('/api/movies', function (req, res) {
+  var newMovie = new db.Movie({
+    title: req.body.title,
+    director: req.body.director,
+    realeaseYear: req.body.releaseYear,
+  });
+  
+  //save newMovie to db
+  newMovie.save(function(err, movie) {
+    if (err) {
+      return console.log('save error:' + err);
+    }
+    console.log('saved ', movie.title);
+    //send back to movie
+    res.json(movie);
+  });
+});
+
+//delete movie
+app.delete('/api/movies/:id', function (req, res) {
+  //get movie id from url params ('req.params')
+  console.log('movies delte', req.params);
+  //find movie index to remove
+  db.Movie.findOneAndRemove({ _id: movieID }, function (err, deleteMovie) {
+    res.json(deleteMovie);
+  });
+});
 
 
 /*
@@ -48,16 +108,14 @@ app.get('/api', function api_index(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Info about me"},
-      {method: "POST", path: "/api/cars", description: "E.g. Add a favorite car"},
-      {method: "GET", path: "/api/cars", description: "Get info about my cars"}
-      //{method: "DELETE", path: "/api/cars", desciption: "Delete a car"}
+      {method: "POST", path: "/api/movies", description: "E.g. Add a favorite movie"},
+      {method: "GET", path: "/api/movies", description: "Get info about my movies"},
+      {method: "DELETE", path: "/api/movies/:movie_id", desciption: "Delete a movie"}
     ]
   });
 });
 
-app.get('api/profile', function(req, res) {
-  res.json('profile');
-});
+
 
 
 /**********
