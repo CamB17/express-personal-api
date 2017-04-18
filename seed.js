@@ -32,28 +32,16 @@ var movies_list = [
 	}
 ];
 
-db.Profile.remove({}, function(err, profile) {
-	console.log('remove all profile information');
-	db.Profile.create(personal_info, function(err, profile) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		console.log(profile);
-		console.log('recreated profile');
-		console.log("created", profile.length, "profile");
-	});
-});
 
 db.Movie.remove({}, function(err, movies){
-    console.log('removed all movies');
-    movies_list.forEach(function (movieData) {
-      var movie = new db.Movie({
-        title: movieData.title,
-        releaseYear: movieData.releaseYear
-      });
-   });
+    console.log('removed movie');
+    db.Movie.create(movies_list, function(err, movies) {
+    	if (err) {
+    		console.log(err);
+    		return;
+    	}
+    	console.log('recreated all Movies');
+    	console.log('created ', movies.length, ' movies');
+
+    });
 });
-
-
-
