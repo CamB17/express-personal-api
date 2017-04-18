@@ -6,31 +6,21 @@ var express = require('express'),
 // and populate the req.body object
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        next();
-    });
+app.use(bodyParser.json());
 
 /************
  * DATABASE *
  ************/
 
-var express = require('express'),
- bodyParser = require('body-parser');
 
 //connect to models db
 var db = require('./models');
 
-var app = express();
-
-app.use(express.static('public'));
-
-app.use(bodyParser.urlencoded({ extended: true }));
 /**********
  * ROUTES *
  **********/
+
+app.use(express.static('public'));
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
