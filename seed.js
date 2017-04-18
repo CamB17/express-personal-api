@@ -3,15 +3,16 @@
 
   var db = require('./models');
 
-var personal_info = [
-  {
-  		name: 'Cameron Barclay',
-  		github_link: 'https://github.com/CamB17',
-  		github_profile_image: 'https://avatars2.githubusercontent.com/u/25963289?v=3&s=460',
-  		current_city: 'Denver'
-  		movies: ['The Departed', 'The Godfather', 'Casino']
-  		//pets:
-  }];
+var camProfile = [
+  { name: "Cameron Barclay",
+    github_link: "https://github.com/CamB17",
+    github_profile_image: 'https://avatars2.githubusercontent.com/u/25963289?v=3&s=460',
+    current_city: "Denver",
+    favorite_hobbies: [{name: "Mountain Biking"}, {name: "Snowboarding"}, {name: "Lifting Weights"}]
+  }
+
+];
+
 
 var movies_list = [
   {
@@ -31,6 +32,20 @@ var movies_list = [
 	 		year: '2 November 1995'
 	}
 ];
+
+db.Profile.remove({}, function(err, profile) {
+  console.log('remove all profile information');
+  db.Profile.create(camProfile, function(err, profile){
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log(profile);
+    console.log('recreated profile');
+    console.log("created", profile.length, "profile");
+
+  });
+});
 
 
 db.Movie.remove({}, function(err, movies){
